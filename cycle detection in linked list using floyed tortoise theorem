@@ -1,0 +1,44 @@
+//slow ->moves by 1 step and fast by 2 steps
+//if both meets-> cycle detected 
+//if instead of meeting ,fast ends up in null then no cycle
+//if fast->next!=null then only fast->next->next instead ->break->false
+//slow and fast both start moving from head only
+
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        
+      ListNode* a1=head;
+      ListNode* a2=head;
+
+if(a1!=nullptr)
+{
+    if(a1->next!=nullptr)
+    {
+    while(a2!=nullptr)
+      {
+         a1=a1->next;
+         
+         if(a2->next!=nullptr)
+         {
+           a2=a2->next->next;
+
+             if(a1==a2)
+           {
+            return 1;
+           }
+         }
+         else
+         {
+            break;
+         } 
+
+         
+      }
+    }
+}
+     
+      return 0;
+
+    }
+};
