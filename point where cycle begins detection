@@ -1,0 +1,77 @@
+//Apply the cycle detection function using tortoise algorithm
+//The point where slow pointer and fast pointer have met would be marked as a point a and a b point would be taken in the head of the liberalist
+//both would be run simultaneously one step at a time until both milk at a point the point at which A and b would be the beginning of the cycle of our linked list
+//from where the cycle begins the final function gold return that point as the answer to the question
+
+class Solution {
+ 
+  void hasCycle(ListNode *head,ListNode *&a0,int &a) {  //cycle detection code
+        
+      ListNode* a1=head;
+      ListNode* a2=head;
+
+         if(a1!=nullptr)
+     {
+        if(a1->next!=nullptr)
+       {
+         while(a2!=nullptr)
+         {
+            a1=a1->next;
+         
+            if(a2->next!=nullptr)
+           {
+             a2=a2->next->next;
+
+               if(a1==a2)
+              {
+                a0=a1;
+                a=1;
+                break;
+              }
+           }
+           else
+          {
+            break;
+          } 
+      }
+    }
+   }
+     
+    //   return 0;
+
+    }
+
+public:
+    ListNode *detectCycle(ListNode *head) {
+        
+        ListNode *a1=head;
+        ListNode *a0;
+        int a2=0;
+hasCycle(head,a0,a2);
+        
+        if(a2==1)
+        {
+            ListNode *a3=head;
+            // ListNode *a4;
+            while(a3!=a0)
+            {
+               a3=a3->next;
+               a0=a0->next;
+            //    if(a3==a0)
+            //    {
+            //      break;
+            //    }
+            }
+
+
+            return a3;
+        
+        }
+        else
+        {
+            ListNode *a3=nullptr;
+
+            return a3;
+        }
+    }
+};
