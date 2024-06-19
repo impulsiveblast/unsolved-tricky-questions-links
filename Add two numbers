@@ -1,0 +1,109 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {     
+        vector<int> v1,v2,ans;
+        ListNode* m1=l1;
+
+        while(m1!=nullptr)
+        {
+           v1.push_back(m1->val);
+           m1=m1->next; 
+        }
+
+        m1=l2;
+     while(m1!=nullptr)
+        {
+           v2.push_back(m1->val);
+           m1=m1->next; 
+        }
+    //    reverse(v1.begin(),v1.end());
+    //    reverse(v2.begin(),v2.end());
+       int rem=0,q=0;
+       
+        if(v1.size()>v2.size())
+        {
+           int t=v2.size();
+
+           for(int i=0;i<t;i++)
+           {
+              
+              rem=(v1[i]+v2[i]+q)%10;
+              q=(v1[i]+v2[i]+q)/10;
+
+              ans.push_back(rem);
+           }
+
+           for(int i=t;i<v1.size();i++)
+           {
+            // int p=rem;
+              rem=(v1[i]+q)%10;
+              q=(v1[i]+q)/10;
+              
+              ans.push_back(rem);
+           }
+
+           if(q>0)
+           {
+            ans.push_back(q);
+           }
+
+        //    reverse(ans.begin(),ans.end());
+         
+       }
+        else
+        {
+              int t=v1.size();
+
+           for(int i=0;i<t;i++)
+           {
+              
+              rem=(v1[i]+v2[i]+q)%10;
+              q=(v1[i]+v2[i]+q)/10;
+
+              ans.push_back(rem);
+           }
+
+           for(int i=t;i<v2.size();i++)
+           {
+              rem=(v2[i]+q)%10;
+              q=(v2[i]+q)/10;
+              
+              ans.push_back(rem);
+           }
+
+           if(q>0)
+           {
+            ans.push_back(q);
+           }
+
+        //    reverse(ans.begin(),ans.end());
+         
+        }
+
+      ListNode* a1=new ListNode(ans[0]);
+ListNode* a2=a1;
+
+  
+        for(int i=1;i<ans.size();i++)
+        {
+            ListNode* a3=new ListNode(ans[i]);
+            a2->next=a3;
+            a2=a3;
+        }
+
+
+        return a1;
+
+
+    }
+};
