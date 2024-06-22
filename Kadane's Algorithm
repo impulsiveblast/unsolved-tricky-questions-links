@@ -1,0 +1,42 @@
+//Initialise a variable m= 0,s=0; and contains the maximum value of the summation until a particular index
+//where as s saves the value after adding a particular index value into itself if the value of s at a moment is positive
+//then it is kept as it is but on the other hand if has turn out to feed negative and any point then we directly convert it again
+//to zero and continue our operation until we reach the last ,the final value of m is the maximum volume of the summation of any inside the main array 
+//in case all the values of the array negative then we would have to take the maximum of all the elements of array
+
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        
+        int m=0,s=0;
+
+        for(int i=0;i<nums.size();i++)
+        {
+            s+=nums[i];
+            if(s<0)
+            {
+                s=0;
+            }
+
+            m=max(s,m);
+        }
+       
+       if(m>0)
+       {
+         return m;
+       }
+       else
+       {
+        int a=nums[0];
+
+        for(int i=0;i<nums.size();i++)
+        {
+           a=max(a,nums[i]); 
+        }
+          return a;
+       }
+        
+
+    }
+};
