@@ -1,0 +1,61 @@
+//optimised o(n+mlogn) solution
+
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        
+
+        vector<int> v1;
+
+        map<int,int> m;
+
+reverse(nums2.begin(),nums2.end());
+        
+        for(int i=0;i<nums2.size();i++)
+        {
+            if(v1.size()==0)
+            {
+                m[nums2[i]]=-1;
+                v1.push_back(nums2[i]);
+            }
+            else
+            {
+                while(v1.size()!=0)
+                {
+                    if(v1[v1.size()-1]>nums2[i])
+                    {
+                       m[nums2[i]]=v1[v1.size()-1];
+                       v1.push_back(nums2[i]);
+                       break;
+                    }
+                    else
+                    {
+                        v1.pop_back();
+                    }
+
+                    if(v1.size()==0)
+                    {
+                        m[nums2[i]]=-1;
+                        
+                    }
+
+
+                }
+
+                if(m[nums2[i]]==-1)
+                {
+                    v1.push_back(nums2[i]);
+                }
+            }
+        }
+
+        vector<int> v2;
+
+        for(int i=0;i<nums1.size();i++)
+        {
+            v2.push_back(m[nums1[i]]);
+        }
+
+        return v2;
+    }
+};
