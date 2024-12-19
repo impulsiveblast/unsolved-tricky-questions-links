@@ -1,0 +1,26 @@
+Brute force:
+
+reverse(s1.begin(),s1.end());
+
+ for(int i=0;i<s1.size();i++)
+ {
+
+    t=int(s1[i])-int('0');
+  sum+=(t*m);
+    m*=10;
+}
+
+
+//this operation takes only takes o(n) time complexity but a runtime error may occur due to very large size of m (beyond supporting limit)
+
+funtion used:
+int a;
+
+string b=to_string(a);
+//to_string() converts a integer to string 
+
+int a=stoi(b)
+//it converts a string of integers back to number
+//time complexity=o(n) 
+//no runtime error issue as no additional variable to calculate the value of integer using operations is used.
+
