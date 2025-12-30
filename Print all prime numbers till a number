@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    
+    cin>>n;
+    
+        
+    for(int i=1;i<=n;i++)
+    { 
+        int c=1;
+    
+        int t=i;
+
+        
+        while(t!=1)
+     {
+        if(i%t==0)
+        {
+            c++;
+        }
+        
+        t=sqrt(t);
+     }
+    
+      if(c==2)
+     {
+        cout<<i<<endl;
+     }
+    
+    }
+    
+    return 0;
+    
+}
