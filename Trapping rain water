@@ -1,0 +1,84 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+         
+        vector<int> lt,rt;
+        int h=0;
+        lt.push_back(0);
+
+        for(int i=1;i<height.size();i++)
+        {
+             h=max(h,height[i-1]);
+            
+             lt.push_back(h);
+        }
+
+         rt.push_back(0);
+         h=0;
+
+        for(int i=height.size()-2;i>=0;i--)
+        {
+           h=max(h,height[i+1]);
+           rt.push_back(h);
+        }
+
+
+        reverse(rt.begin(),rt.end());
+
+
+          int sum=0,t;
+
+          for(int i=0;i<height.size();i++)
+          {
+            t=min(lt[i],rt[i]) -height[i];
+
+             if(t>0)
+             {
+                sum+=t;
+             }
+          }
+        
+
+        return sum;
+
+         
+    }
+};
+
+
+
+
+
+# Intuition
+
+For every bar, the amount of water it can trap depends on the tallest bar present on its left and the tallest bar present on its right. The water level above a bar is determined by the minimum of these two heights. If this level is greater than the current bar's height, water can be trapped.
+
+To efficiently compute this, we precompute:
+- `lt[i]` = maximum height to the left of index `i`
+- `rt[i]` = maximum height to the right of index `i`
+
+Then for each index, the trapped water is:
+
+water[i] = min(lt[i], rt[i]) - height[i]
+
+if the value is positive.
+
+# Approach
+
+1. Create a left maximum array `lt` where each element stores the tallest bar to the left of the current index.
+2. Create a right maximum array `rt` where each element stores the tallest bar to the right of the current index.
+3. Traverse the height array:
+   - Calculate the water level using `min(lt[i], rt[i])`.
+   - Subtract the current bar height.
+   - If the result is positive, add it to the total trapped water.
+4. Return the accumulated sum.
+
+# Complexity
+
+- Time Complexity:
+  - `O(n)`  
+    We traverse the array three times: once for the left maximum array, once for the right maximum array, and once to calculate trapped water.
+
+- Space Complexity:
+  - `O(n)`  
+    Additional arrays `lt` and `rt` of size `n` are used.
