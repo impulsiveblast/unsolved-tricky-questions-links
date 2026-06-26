@@ -1,0 +1,93 @@
+class Solution {
+  public:
+    int findPages(vector<int> &arr, int k) {
+        // code here
+        
+        
+        int i=arr[0],j=0,mid,pg=0,st=0;
+        
+        
+        for(int i1=0;i1<arr.size();i1++)
+        {
+            i=max(i,arr[i1]);
+            
+            j+=arr[i1];
+        }
+        
+        
+        while(i<=j)
+        {
+            
+            mid=(i+j)/2;
+            
+            pg=0,st=0;
+            
+            for(int i1=0;i1<arr.size();i1++)
+            {
+                     
+                pg+=arr[i1];
+                
+                if(pg>mid)
+                {
+                    pg=arr[i1];
+                    
+                    st++;
+                }
+                
+                
+                if(i1==arr.size()-1)
+                {
+                    st++;
+                }
+            }
+            
+            
+            if(st>k)
+            {
+                i=mid+1;
+            }
+            else
+            {
+                j=mid-1;
+            }
+            
+             
+        }
+        
+        
+        if(arr.size()<k)
+        {
+            return -1;
+        }
+        
+        return i;
+        
+    }
+};
+
+
+
+
+/*
+Explanation:
+
+We use binary search on the answer, where the search space ranges from the maximum pages in a single book to the sum of all pages.
+
+The lower bound is the largest book because no student can be assigned less than that.
+
+The upper bound is the total pages because one student can read all the books.
+
+For every mid, we check whether it is possible to allocate all books such that no student gets more than mid pages.
+
+While traversing the books, if adding the current book exceeds mid, we assign the book to a new student and continue.
+
+The variable st counts the minimum number of students required for the current mid.
+
+If st > k, the allocation is impossible, so we move the search to the right (low = mid + 1) to allow more pages per student.
+
+Otherwise, the allocation is possible, so we try to minimize the answer by searching the left half (high = mid - 1).
+
+This binary search exploits the polarity change: the answer space changes from a region where allocation is impossible (0/False) to a region where it becomes possible (1/True), and we search for the first possible value.
+
+After the binary search ends, low points to the minimum possible maximum pages that can be assigned to any student, which is the required answer.
+*/
