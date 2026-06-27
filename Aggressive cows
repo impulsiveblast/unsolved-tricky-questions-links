@@ -1,0 +1,67 @@
+class Solution {
+  public:
+    int aggressiveCows(vector<int> &stalls, int k) {
+        // code here
+        
+        sort(stalls.begin(),stalls.end());
+        
+        
+        int j=stalls[stalls.size()-1]-stalls[0],st=j,d,cw;
+        
+           for(int i=1;i<stalls.size();i++)
+           {
+               st=min(st,stalls[i]-stalls[i-1]);
+           }
+           
+           int i=st,mid;
+           
+           while(i<=j)
+           {
+               mid=(i+j)/2;
+               
+               int l=stalls[0];
+               cw=1;
+               
+               
+               for(int i1=1;i1<stalls.size();i1++)
+               {
+                  if(stalls[i1]-l>=mid)
+                  {
+                      cw++;
+                      
+                      l=stalls[i1];
+                  }
+                  
+                  
+                  
+               }
+               
+               
+               if(cw>=k)
+               {
+                   i=mid+1;
+               }
+               else
+               {
+                   j=mid-1;
+               }
+               
+           }
+           
+           
+           if(stalls.size()>=k)
+           {
+               return j;
+           }
+           
+           
+           return -1;
+        
+    }
+};
+
+
+
+->we need to return minimum distance to be maximum possible ony if we take maximum distance which just satisfies the criteria that by end of loop we can only adjust n cows
+
+->thats why j has been returned which gives just the condition where stall numbers reach != <k so it returnes maximum possible distance
