@@ -1,0 +1,44 @@
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        
+       int maxj=0;
+
+       for(int i=0;i<nums.size();i++)
+       {
+
+             if(i>maxj){
+                return false;
+             }
+
+       maxj=max(maxj,i+nums[i]);
+
+         
+       }
+
+
+       return true;
+
+    }
+};
+
+
+
+>>we are storing a maxj to keep the max possible index rechable with us ..... if the index we are at is reachable it wd be <=maxj else its impossible to reah end
+>> if the array is filled with all positive terms its always possible to reach at the end
+
+Intuition
+
+At every index, keep track of the farthest position that can be reached so far. If at any point the current index is beyond this farthest reachable position, it means that index cannot be reached, so reaching the last index is impossible.
+
+Approach
+Initialize a variable maxj to store the farthest reachable index.
+Traverse the array from left to right.
+If the current index i is greater than maxj, return false because this index is unreachable.
+Otherwise, update maxj as the maximum of its current value and i + nums[i], representing the farthest index reachable after jumping from the current position.
+If the loop finishes without encountering an unreachable index, return true.
+Complexity
+Time complexity:
+O(n), since the array is traversed only once.
+Space complexity:
+O(1), as only one extra variable is used.
