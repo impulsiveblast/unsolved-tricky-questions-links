@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool comp(vector<int> &a, vector<int> &b)
+{
+    
+    //for descending order of 2nd element
+    // if(a[1]>b[1])
+    // {
+    //     return true; 
+    // }
+    
+    
+    //for ascending order of 2nd element
+    if(a[1]<b[1])
+    {
+        return true; 
+    }
+    
+    
+    return false;
+}
+
+
+int main()
+{
+    
+    
+    
+    
+    vector<vector<int>> v1;
+    
+    
+    vector<int> v;
+    int n;
+    
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        int x,y;
+        
+        cin>>x>>y;
+        
+        v.push_back(x);
+        v.push_back(y);
+        
+        v1.push_back(v);
+        v.clear();
+    }
+    
+    
+    
+    sort(v1.begin(),v1.end(),comp);
+    
+    for(int i=0;i<n;i++)
+    {
+       cout<<v1[i][0]<<" "<<v1[i][1]<<endl;
+    }
+    
+    
+    return 0;
+    
+    
+}
