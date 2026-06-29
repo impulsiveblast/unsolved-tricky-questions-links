@@ -1,0 +1,48 @@
+class Solution {
+public:
+
+static bool comp(vector<int> &v1,vector<int> &v2){
+
+   if(v1[1]<v2[1])
+   {
+      return true;
+   }
+
+   return false;
+
+}
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+        
+
+
+sort(intervals.begin(),intervals.end(),comp);
+       int st=intervals[0][0];
+       int e=intervals[0][1];
+
+
+       int count=0;
+      
+      for(int i=1;i<intervals.size();i++)
+      {
+         if(intervals[i][0]<e)
+         {
+            count++;
+
+         }
+         else
+         {
+             st=intervals[i][0];
+             e=intervals[i][1];
+         }
+
+      }
+    
+
+      return count;
+
+    }
+};
+
+
+->its just n meeting in a room where we have to find max meetings we can have in a room and remove that out of all meetings
+->it gives us  overlapig intervals .... this is we can remove 
