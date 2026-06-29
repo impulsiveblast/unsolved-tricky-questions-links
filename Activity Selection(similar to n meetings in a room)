@@ -1,0 +1,61 @@
+class Solution {
+  public:
+  
+  static bool comp(vector<int> v1 , vector<int> v2)
+  {
+      if(v1[1]<v2[1])
+      {
+          return true;
+      }
+      
+      return false;
+  }
+  
+    int activitySelection(vector<int> &start, vector<int> &finish) {
+        // code here
+            
+             vector<vector<int>> v1;
+             
+             vector<int> v;
+             
+             for(int i=0;i<start.size();i++)
+             {
+                 v.push_back(start[i]);
+                 v.push_back(finish[i]);
+             
+                 v1.push_back(v);
+                 
+                 v.clear();
+                 
+             }
+             
+             
+             sort(v1.begin(),v1.end(),comp);
+             
+             
+             
+             int st=v1[0][0];
+             int e=v1[0][1];
+             
+            int count=1;
+            
+            for(int i=1;i<v1.size();i++)
+            {
+                if(e<v1[i][0])
+                {
+                    count++;
+                    st=v1[i][0];
+                    e=v1[i][1];
+                }
+            }
+             
+             
+             return count;
+             
+             
+    }
+};
+
+
+//i have chosen activities based on how fast they end for availability for next activity
+//in this way alloting meeting space would be easy for me
