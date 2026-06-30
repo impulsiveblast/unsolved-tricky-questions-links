@@ -1,0 +1,51 @@
+class Solution {
+  public:
+    int minMeetingRooms(vector<int> &start, vector<int> &end) {
+        // code here
+        
+        sort(start.begin(),start.end());
+        
+        sort(end.begin(),end.end());
+        
+        
+        int i=0,j=0;
+        
+        
+        int count=0,meetmax=0;
+        
+        
+        while(i<start.size())
+        {
+            
+            if(start[i]<end[j])
+            {
+                count++;
+                i++;
+            }
+            else
+            {
+                count--;
+                
+                j++;                
+            }
+            
+            meetmax=max(meetmax,count);
+                
+            
+        }
+        
+        
+        return meetmax;
+        
+        
+        
+          
+        
+    }
+};
+
+>>maximum number rooms required will reac at time when max meetings timeline overlap
+>> we will arrange arrival and departure of every meeting in sorted order both to check max arrivals at a point of time
+>> for each departure at a point of time we would decrease the no of rooms and increase for arrival.
+
+
