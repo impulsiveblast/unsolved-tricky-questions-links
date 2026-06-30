@@ -1,0 +1,43 @@
+class Solution {
+  public:
+    int minPlatform(vector<int>& arr, vector<int>& dep) {
+        // code here
+        
+        int count=0,i=0,j=0,maxcount=0;
+        
+        sort(arr.begin(),arr.end());
+        
+        sort(dep.begin(),dep.end());
+        
+        
+        while(i<arr.size())
+        {
+           
+            if(arr[i]<=dep[j])
+            {
+                count++;
+                
+                i++;
+                
+            }
+            else
+            {
+                count--;
+                
+                j++;
+            }
+            
+            maxcount=max(count,maxcount);
+            
+        }
+        
+        
+        return maxcount;
+        
+    }
+};
+
+
+>>Similar to meeting rooms 2 where max rooms were required to allot a meeting was asked
+>>twist here is - train is not a small object so if arrival time of one train and departure both are happening at same time at same platform they might collide 
+>> in this case platforms should be separated
