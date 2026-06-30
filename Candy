@@ -1,0 +1,62 @@
+class Solution {
+public:
+    int candy(vector<int>& ratings) {
+        
+        int n=ratings.size();
+
+         vector<int> v1(n,1);
+         vector<int> v2(n,1);
+       
+      //from left
+
+
+      for(int i=1;i<v1.size();i++)
+      {
+          if(ratings[i]>ratings[i-1])
+          {
+            v1[i]=v1[i-1]+1;
+          }
+      }
+
+
+    //    for(int i=v2.size()-2;i>=0;i--)
+    //    {
+    //         if(ratings[i]>ratings[i+1])
+    //         {
+    //             v2[i]=v2[i+1]+1;
+    //         }
+            
+    //    }
+int t;
+    
+       for(int i=v1.size()-2;i>=0;i--)
+       {
+            if(ratings[i]>ratings[i+1])
+            {
+                t=v1[i+1]+1;
+                v1[i]=max(v1[i],t);
+            }
+            
+       }
+
+    
+
+     int sum=0;
+         
+         for(int i=0;i<v1.size();i++)
+        {
+ 
+            sum+=v1[i];
+       }
+
+return sum;
+
+    //    return v1;
+
+    }
+};
+
+
+
+>>child should have more candies than more than left and right so in order to satisfy both at same time we can take maximum value
+>> one by traversing from left and other traversing from right
