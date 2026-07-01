@@ -1,0 +1,72 @@
+class Solution {
+  public:
+  
+  static bool comp(pair<int,int> p1,pair<int,int> p2)
+  {
+      
+      double a10=p1.first,a11=p1.second,b10=p2.first,b11=p2.second;
+      
+      
+      if((a10/a11)>(b10/b11))
+      {
+          return true;
+      }
+      
+      return false;
+  }
+  
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        // code here
+        
+        vector<pair<int,int> > v1;
+        pair<int,int> p;
+        
+        
+        for(int i=0;i<val.size();i++)
+        {
+            p.first=(val[i]);
+            p.second=(wt[i]);
+            
+            v1.push_back(p);
+            
+            // v.clear();
+        }
+    
+        
+        
+        sort(v1.begin(),v1.end(),comp);
+
+     double sum1=0,sum=0,temp=0;        
+     double r,a1,a2;
+    
+        for(int i=0;i<v1.size();i++)
+        {
+            //  temp+=v1[i][1];
+             
+             if(v1[i].second<=capacity)
+             {
+                 sum1+=v1[i].first;
+                 
+                 capacity-=v1[i].second;
+             }
+             else
+             {
+                  a1=v1[i].first,a2=v1[i].second;
+                  r=(a1/a2);
+                 
+                 sum1+=capacity*r;
+                 
+                 break;
+                 
+             }
+        }
+        
+        
+        return sum1;
+        
+        
+    }
+};
+
+>>sort elements based on the ratio of number of elements per unit weight
+>>inserting pair has  less space and time complexity than vector 
