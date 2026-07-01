@@ -1,0 +1,8 @@
+if (Aleft <= Bright && Bleft <= Aright)
+    answer found
+
+else if (Aleft > Bright)
+    move left
+
+else
+    move right
