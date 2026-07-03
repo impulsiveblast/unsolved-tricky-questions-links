@@ -1,0 +1,57 @@
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        
+
+        unordered_set<int> s0;
+
+        int i=0,j=0,count=0,maxcount=0;
+        map<int,int> m;
+        
+        while(j<fruits.size() && i<=j)
+        {
+
+            if(m[fruits[j]]==0)
+            {
+                m[fruits[j]]=1;
+
+                if(m.size()>2)
+                {
+                    i=j-1;
+                    int t=fruits[i];
+                    while(i>=0)
+                    {
+                        if(fruits[i]!=t)
+                        {
+                            m.erase(fruits[i]);
+                            i++;
+                            break;
+                        }
+                        else
+                        {
+                            i--;
+                        }
+                    }
+
+                }
+            }
+
+            count=j-i+1;
+
+            maxcount=max(count,maxcount);
+
+            j++;
+        }
+
+return maxcount;
+    }
+};
+
+
+>>we would be checking the 1st position of last stored element just before the 3rd added element 
+>> for that we would shift i to j-1 ->last pos where fruit[j-1] is present and we wd subsequently be decreasing i till its no more the same element 
+>>the elemnt just next to new i willll be 1st index i should be at 
+
+
+
+
