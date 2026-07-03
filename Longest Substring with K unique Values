@@ -1,0 +1,59 @@
+class Solution {
+  public:
+    int longestKSubstr(string &s, int k) {
+        // code here
+        
+        
+        int i=0,j=0,count=0,maxcount=-1;
+        
+        
+        map<char,bool> m;
+        
+        while(j<s.size())
+        {
+             
+             if(m[s[j]]==0)
+             {
+                 m[s[j]]=1;
+                
+                 if(m.size()>k)
+                 {
+                     
+                    set<char> s0;
+                    s0.insert(s[j]);
+                 
+                     i=j;
+                     
+                     while(s0.size()<=k) 
+                     {
+                         i--;
+                         s0.insert(s[i]);
+                         
+                     }
+                    //  s0.clear();
+                    
+                     m.erase(s[i]);
+                     i++;
+                 }
+             }
+             
+             
+             count=(j-i+1);
+             
+             if(m.size()==k)
+            {
+                maxcount=max(maxcount,count);
+            }
+             
+             j++;
+        }
+        
+        
+        return maxcount;
+    }  
+};
+
+
+>> logic is similar to fruit basket
+>> instead of checking set value till it fills 3 we have to check till it reaches k+1 
+>>and then pops it from map and finally inc i as k size has to be restored
