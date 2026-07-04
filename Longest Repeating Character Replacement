@@ -1,0 +1,66 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+         
+         int i=0,j=0,count=0,maxsize=0;
+         int size=0;
+map<char,int> m;
+
+         while(j<s.size())
+         {
+            m[s[j]]++;
+        
+          size=j-i+1;
+          
+          count=0;
+
+           for(auto it=m.begin();it!=m.end();it++)
+           {
+               count=max(count,(*it).second);
+           }
+
+          if(size-count<=k)
+          {
+             maxsize=max(maxsize,size);
+          }
+          else
+          {
+            int count=0;
+             size=j-i+1;
+             
+             while(size-count>k)
+             {
+                  m[s[i]]--;
+                
+            for(auto it=m.begin();it!=m.end();it++)
+             {
+               count=max(count,(*it).second);
+             }
+
+             i++;
+
+             size=j-i+1;
+
+
+            }
+
+
+          }
+
+          j++;
+
+
+
+         }
+
+    return maxsize;
+
+    }
+};
+
+
+>>we can always run our max frequency element frequency via for loop as its a constant value=26 so 26*n->o(n) 
+
+
+
+
