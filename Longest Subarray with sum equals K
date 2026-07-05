@@ -1,0 +1,58 @@
+class Solution {
+  public:
+    int longestSubarray(vector<int>& arr, int k) {
+        // code here
+        
+        long long i=0,j=0,sum=0,size=0;
+        
+        unordered_map<long long,long long> m2;
+        
+        unordered_map<long long,bool> m1;
+      
+        
+        while(j<arr.size())
+        {
+            sum+=arr[j];
+            
+            if(m1[sum]==0)
+            {
+              m1[sum]=1;
+            
+              m2[sum]=j;
+            }
+            
+            if(sum==k)
+            {
+                size=max(size,(j+1));
+                
+            }
+            else
+           { 
+              long long t=(sum-k);
+            
+              if(m1[t]==1)
+             {
+                size=max(size,j-m2[t]);
+             }
+            
+           
+           }
+           
+           j++;
+      
+        }
+        
+        
+        return size;
+    }
+};
+
+
+>>for longest prefix sum either te sum should be equal to target or a portion of subarray should be equal to k
+>> for it i created another map containing earliest point till which the sum was sum-k exists.....
+
+>> the max funtion can retun us the value maximum size required
+
+
+
+
