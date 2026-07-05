@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        
+      int i=0,j=0,sum=0,count=0;
+
+      map<int,vector<int>> m;
+
+      while(j<nums.size())
+      {
+
+           sum+=nums[j];
+
+           m[sum].push_back(j);
+
+           if(sum==k)
+           {
+             count++;
+           }  
+         
+         if(m[sum-k].size()>0)
+         {
+            if(m[sum-k][m[sum-k].size()-1]==j )
+            {
+                count+=m[sum-k].size()-1;
+            }
+            else{
+            count+=m[sum-k].size();
+            }
+         }
+       
+
+       j++;
+          
+      }
+
+
+      return count;
+
+    }
+};
+
+
+>>same as subarray sum should be equal to k .
+>>edge case......when k==0 then sum-k=sum possible that the index we are finding and were we are at are the same .
+>>so just equate the index where we at with the last inserted element with value at last index present.... it wd come out true and just add count of all elements except last
+
+
+
+
