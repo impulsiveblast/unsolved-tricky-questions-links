@@ -1,0 +1,132 @@
+#1  O(nlogn) Approach i took the array sorted it and checked for the longest sequence via count++ and made count=1 when  it broke up
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        
+       sort(nums.begin(),nums.end());
+
+
+       int cur,count=1,maxcount=0;
+
+   if(nums.size()>0)
+{
+     cur=nums[0];
+     maxcount=1;
+
+
+}
+
+       for(int i=1;i<nums.size();i++)
+       {
+           if(nums[i]==cur+1 || nums[i]==cur)
+           {
+             if(nums[i]==cur+1)
+             {
+                count++;
+             }
+           }
+           else
+           {
+              count=1;
+           }
+      
+      cur=nums[i];
+
+           maxcount=max(maxcount,count);
+       }
+
+
+       return maxcount;
+
+    }
+};
+
+
+
+
+
+#2 O(nlogn) i took a map inserted all elements and when m[element-1] doesnt exists checked how far can this consequtively go whith m[element]=1 and element++ to increase it at same time
+
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        
+      map<int,int> m;
+
+        for(int i=0;i<nums.size();i++)
+        {
+            m[nums[i]]=1;
+        }
+
+        int count=0,maxcount=0;
+  
+      
+      for(auto it =m.begin();it!=m.end();it++)
+      {
+         count=1;
+            int k=(*it).first;
+
+            if(m[k-1]!=1)
+            {
+                while(m[k+1]==1)
+                {
+                   count++; 
+                   k++;
+                }
+
+             
+               }
+
+               maxcount=max(maxcount,count);
+
+    
+      }
+
+        return maxcount;
+
+
+   }
+};
+
+
+#3 O(n) took an unordered_set and did same as above here it wd take o(1) to insert so  o(n) is max and avg tc
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        
+
+        int j=0;
+
+        unordered_set<int> s;
+
+        for(int i=0;i<nums.size();i++)
+        {
+            s.insert(nums[i]);
+        }
+
+int maxcount=0,count1=1;
+        for(auto it=s.begin();it!=s.end();it++)
+        {
+            count1=1;
+             if(s.count(*it-1)==0)
+             {
+                  int t=*it;
+                   while(s.count(t+1)>0)
+                   {
+                      count1++;
+                      t++;
+                   }
+           
+             }
+
+             maxcount=max(count1,maxcount);
+        }
+
+
+        return maxcount;
+    }
+};
