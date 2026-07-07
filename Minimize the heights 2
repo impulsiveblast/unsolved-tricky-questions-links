@@ -1,0 +1,50 @@
+class Solution {
+  public:
+    int getMinDiff(vector<int> &arr, int k) {
+        // code here
+        
+        sort(arr.begin(),arr.end());
+        int i;
+        
+        for( i=0;i<arr.size();i++)
+        {
+            if(arr[i]>=k)
+            {
+                break;
+            }
+        }
+        
+        int minh=arr[arr.size()-1]-arr[0];
+        
+        for(int j=i;j<arr.size();j++)
+        {
+            if(j==0)
+            {
+                minh=(arr[arr.size()-1]-arr[0]);
+            }
+            else 
+            {
+                int t1=min(arr[0]+k,arr[j]-k);
+                
+                int t2=max(arr[j-1]+k,arr[arr.size()-1]-k);
+                
+                
+                
+                minh=min(minh,t2-t1);
+            }
+                
+        }
+        
+        return minh;
+        
+    }
+};
+
+
+>>same as minimize heights 1 only diffrence is ..........here negative not alowed as height after reduction so only decrease height  of towers >=k 
+>>remaining principal is same
+
+
+
+
+
