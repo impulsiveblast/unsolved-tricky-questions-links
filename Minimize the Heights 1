@@ -1,0 +1,51 @@
+class Solution {
+  public:
+    int getMinDiff(vector<int> &arr, int k) {
+        // code here
+        
+          sort(arr.begin(),arr.end());
+          int t1,t2;
+          int mndif;
+          
+          for(int i=0;i<arr.size();i++)
+          {
+              if(i!=arr.size()-1)
+            {
+                t1=max(arr[i]+k,arr[arr.size()-1]-k);
+              
+              t2=min(arr[0]+k,arr[i+1]-k);
+              
+              if(i==0)
+              {
+                  mndif=t1-t2;
+              }
+              
+              
+            }
+            else
+            {
+                  
+               t1=arr[i];
+               t2=arr[0];
+               
+               
+                 
+            }
+            
+            
+             mndif=min(mndif,(t1-t2));
+          }
+          
+          
+          
+          return mndif;
+        
+    }
+};
+
+
+>>concept used: if we decrease the max possible height and increase the minimum possible height then its possible to reduce the diffrence between max and min 
+>>we should proceed from left to right while separating min height containing array and max height containing array...and calculate min and max diff for each case.
+
+
+
