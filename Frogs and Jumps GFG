@@ -1,0 +1,63 @@
+class Solution {
+  public:
+    int unvisitedLeaves(int N, int leaves, int frogs[]) {
+        // Code here
+        
+        // map<int,bool> m;
+        
+        vector<int> m(leaves+1,0);
+       
+       unordered_map<int,int> m0;
+       
+        int  count=leaves;
+         int i=0;
+      
+        while(i<N )
+        {
+           int val=0;
+          
+          if(m0[frogs[i]]==0)
+          {
+              m0[frogs[i]]=1;
+          
+            while(val<=leaves )
+            {
+                val+=frogs[i];
+                
+                if(val<=leaves)
+                {
+                    if(m[val]==0)
+                    {
+                        m[val]=1;
+                        
+                        count--;
+                        
+                    }
+                }
+            }
+          }
+            
+            i++;
+        }
+      
+      
+        
+        return count;
+    
+        
+    }
+};
+
+
+
+
+>>Proceed next jump by adding the value / strength of jump we can make 
+>> map the visited value as 1 
+>>if we have already used a strength then we wont be useing it again so instead we be using map to map the value of weather we have already used it or not
+>>final count will be the count of the unvisited leaves
+
+
+
+
+
+
