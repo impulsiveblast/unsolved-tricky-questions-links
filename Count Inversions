@@ -1,0 +1,104 @@
+class Solution {
+  public:
+  
+  void merge(vector<int> &arr,int s,int e,int &count){
+      
+      vector<int> v1,v2;
+      
+      int mid=(s+e)/2;
+      
+      for(int i=s;i<=mid;i++)
+      {
+          v1.push_back(arr[i]);
+      }
+      
+      
+      for(int j=mid+1;j<=e;j++)
+      {
+          v2.push_back(arr[j]);
+      }
+      
+      int i=0,j=0,pt=s-1,old=0;
+     
+     
+     while(i<v1.size() && j<v2.size())
+     {
+          pt++;
+         
+         
+          if(v1[i]<=v2[j])
+          {
+              arr[pt]=v1[i];
+              
+              i++;
+          }
+          else
+          {
+                 count+=(v1.size()-i);
+             
+              
+              arr[pt]=v2[j];
+              j++;
+          }
+     }
+     
+     
+     if(i==v1.size())
+     {
+         for(int k=j;k<v2.size();k++)
+         {
+             
+             pt++;
+             
+             arr[pt]=v2[k];
+         }
+     }
+     
+     if(j==v2.size())
+     {
+         
+         for(int k=i;k<v1.size();k++)
+         {
+             pt++;    
+             arr[pt]=v1[k];
+             
+         }
+     }
+      
+  }
+  
+  
+  
+  void break_vec(vector<int> &arr,int s,int e,int &count){
+      
+      if(s>=e)
+      {
+          return;
+      }
+      
+      int mid=(s+e)/2;
+      
+      break_vec(arr,s,mid,count);
+      
+      break_vec(arr,mid+1,e,count);
+      
+      merge(arr,s,e,count);
+      
+  }
+    
+  
+  
+  
+int inversionCount(vector<int> &arr) {
+        // Code Here
+        
+        int s=0,e=arr.size()-1;
+        
+        int count=0;
+        
+        break_vec(arr,s,e,count);
+        
+        return count;
+        
+  }
+};
