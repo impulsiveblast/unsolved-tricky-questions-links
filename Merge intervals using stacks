@@ -1,0 +1,117 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool comp(pair<int,int> &p1,pair<int,int> &p2){
+    
+    if(p1.second<p2.second)
+    {
+        return true;
+    }
+    
+    return false;
+    
+}
+
+void merge(vector<pair<int,int>> &v)
+{
+    stack<pair<int,int>> st;
+    
+    for(int i=0;i<v.size();i++)
+    {
+        st.push(v[i]);
+    }
+    
+    pair<int,int> p;
+    
+    vector<pair<int,int>> v1;
+    
+    p=st.top();
+    
+    int f=p.first,l=p.second;
+    
+    st.pop();
+    
+    while(!st.empty())
+    {
+        int ans=0;
+       p=st.top();
+     
+       st.pop();
+       
+       int f1=p.first,l1=p.second;
+       
+       if(l1<f)
+       {
+           v1.push_back({f,l});
+           ans=1;
+           f=f1;
+           l=l1;
+       }
+       else if(l1>=f && l1<=l )
+       {
+           f=f1;
+       }
+       else if(f1>=f && l1>l)
+       {
+           l=l1;
+       }
+       else if(f1<f && l1>l)
+       {
+         f=f1;
+         l=l1;
+       }
+       
+       
+       if(st.empty())
+       {
+           v1.push_back({f,l});
+       }
+       
+    }
+    
+    v=v1;
+    
+    reverse(v.begin(),v.end());
+    
+}
+
+
+int main(){
+ 
+ pair<int,int> p;
+ 
+ vector<pair<int,int>> v0;
+ 
+ int n;
+ 
+ cin>>n;
+ 
+ for(int i=0;i<n;i++)
+ {
+     int x,y;
+     
+     cin>>x>>y;
+     
+     p.first=x;
+     p.second=y;
+     
+     v0.push_back(p);
+ }
+ 
+ 
+ sort(v0.begin(),v0.end(),comp);
+ 
+ cout<<endl<<endl;
+ 
+ merge(v0);
+ 
+    for(int i=0;i<v0.size();i++)
+    {
+        cout<<v0[i].first<<" "<<v0[i].second<<endl;
+    }
+ 
+ 
+ return 0;
+ 
+    
+}
