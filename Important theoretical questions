@@ -1,1 +1,18 @@
 Diffrence bw multithreading and asynchronous tasks 
+
+Interview-style answer
+Multithreading and asynchronous programming are two approaches to handling multiple tasks efficiently, but they work differently.
+- Multithreading involves running multiple threads within the same process. Multiple threads can execute tasks concurrently, and on multi-core CPUs they can potentially run in parallel. It is useful for CPU-intensive work or tasks that benefit from separate execution threads.
+- Asynchronous programming allows a program to start a task and continue doing other work without waiting for that task to finish. When the task is waiting for something, such as an API response or database query, the event loop can handle other tasks.
+The key difference: Multithreading uses multiple threads to execute work, whereas asynchronous programming uses non-blocking execution to avoid wasting time while tasks are waiting.
+Simple example
+Imagine a restaurant:
+- Multithreading: Multiple chefs independently prepare different orders at the same time.
+- Asynchronous: One chef starts boiling pasta, then prepares another dish while waiting for the water to boil.
+Comparison
+Feature	Multithreading	Asynchronous
+Execution	Multiple threads	Usually one event-loop thread
+Best suited for	CPU-bound work and concurrent blocking tasks	I/O-bound tasks
+Resource usage	More overhead	Generally lightweight
+Context switching	Between threads	Through event-loop scheduling
+Example	Processing multiple files using threads	Handling multiple API requests using async/await
